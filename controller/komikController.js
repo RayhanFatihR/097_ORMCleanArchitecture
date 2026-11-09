@@ -24,7 +24,7 @@ async function getKomikById(req, res) {
     }
 }
 
-async function createKomik(req, res) {
+async function updateKomik(req, res) {
     const { id } = req.params;
     const { title, description, author } = req.body;
 
@@ -39,5 +39,7 @@ async function createKomik(req, res) {
         await komik.save();
         res.status(200).json(komik);
     } catch (error) {
-        
+        console.error('Error updating komik:', error.message);
+        res.status(500).json({ error: 'An error occurred while updating komik.' });
     }
+}
